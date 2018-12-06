@@ -1,8 +1,9 @@
 
-// self executing function here
-(function() {
-    // your page initialization code here
-    // the DOM will be available here
+$(document).ready(function() {
     
-    alert('Hello World!!');
- })();
+    const SHOP = window.Shopify.shop
+    const API_BASE = `https://${SHOP}/apps/mindset-api-v1`
+
+    $.get(`${API_BASE}/test`)
+
+});
