@@ -92,11 +92,11 @@ aren’t available to the outside world. */
 
     var buildCardTemplate = function (productData) {
         return ` 
-            <div class="msl-flex-item">
+            <a class="msl-flex-item" href="/products/${productData.handle}">
                 <img src="${productData.image.src}" />
                 <h4> ${productData.title} </h4>
                 <span> ${productData.variants[0].price} </span>
-            </div>
+            </a>
         `
     };
 
