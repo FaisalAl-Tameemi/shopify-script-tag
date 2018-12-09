@@ -9,7 +9,7 @@ aren’t available to the outside world. */
 
 
     var loadCSS = function($){
-        $('body').appendChild(`
+        $('body').append(`
             <style>
                 .flex-container {
                     padding: 0;
