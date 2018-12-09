@@ -15,7 +15,6 @@ aren’t available to the outside world. */
                     padding: 0;
                     margin: 0;
                     list-style: none;
-
                     display: -webkit-box;
                     display: -moz-box;
                     display: -ms-flexbox;
@@ -24,20 +23,26 @@ aren’t available to the outside world. */
 
                     -webkit-flex-flow: row wrap;
                     justify-content: space-around;
+
+                    padding: 100px;
+                }
+
+                @media screen and (max-width: 992px) {
+                    .flex-container {
+                        padding: 20px;
+                    }
+                }
+
+                @media screen and (max-width: 600px) {
+                    .flex-container {
+                        padding: 10px;
+                    }
                 }
 
                 .flex-item {
                     flex: 1;
                     box-sizing: border-box;
-                    border: 3px solid #fff;
-                    background: tomato;
-                    height: 150px;
                     margin-top: 10px;
-
-                    line-height: 150px;
-                    color: white;
-                    font-weight: bold;
-                    font-size: 3em;
                     text-align: center;
                 }
             </style>
@@ -78,8 +83,8 @@ aren’t available to the outside world. */
                     src="${productData.image.src}"
                     width="100%" 
                 />
-                <h3> ${productData.title} </h3>
-                <p> ${productData.variants[0].price} </p>
+                <h4> ${productData.title} </h4>
+                <span> ${productData.variants[0].price} </span>
             </div>
         `
     };
