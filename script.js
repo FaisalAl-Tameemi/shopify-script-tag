@@ -8,8 +8,8 @@ aren’t available to the outside world. */
 
 
 
-    var loadCSS = function(){
-        document.getElementsByTagName("head")[0].appendChild(`
+    var loadCSS = function($){
+        $('body').appendChild(`
             <style>
                 .flex-container {
                     padding: 0;
@@ -75,11 +75,11 @@ aren’t available to the outside world. */
         return ` 
             <div class="flex-item">
                 <img 
-                    src="${productData.image}"
+                    src="${productData.image.src}"
                     width="100%" 
                 />
                 <h3> ${productData.title} </h3>
-                <p> ${productData.price} </p>
+                <p> ${productData.variants[0].price} </p>
             </div>
         `
     };
@@ -100,7 +100,7 @@ aren’t available to the outside world. */
     var initialize = function($){
         $.get(`${API_BASE}/recommendations/similar`, function(data) {
             var html = buildRecommendationSectionTemplate(data);
-            $('#some-id').append(html);
+            $('#shopify-section-product-template').append(html);
         });
     };
 
@@ -111,11 +111,11 @@ aren’t available to the outside world. */
     if ((typeof jQuery === 'undefined') || (parseInt(jQuery.fn.jquery) === 1 && parseFloat(jQuery.fn.jquery.replace(/^1\./,'')) < 7.1)) {
         loadScript('//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js', function(){
             jQuery191 = jQuery.noConflict(true);
-            loadCSS();
+            loadCSS(jQuery191);
             initialize(jQuery191);
         });
     } else {
-        loadCSS();
+        loadCSS(jQuery);
         initialize(jQuery);
     }
 
