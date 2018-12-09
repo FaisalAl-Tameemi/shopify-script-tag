@@ -11,7 +11,7 @@ aren’t available to the outside world. */
     var loadCSS = function($){
         $('body').append(`
             <style>
-                .flex-container {
+                .msl-flex-container {
                     padding: 0;
                     margin: 0;
                     list-style: none;
@@ -29,18 +29,18 @@ aren’t available to the outside world. */
                 }
 
                 @media screen and (max-width: 992px) {
-                    .flex-container {
+                    .msl-flex-container {
                         padding: 20px;
                     }
                 }
 
                 @media screen and (max-width: 600px) {
-                    .flex-container {
+                    .msl-flex-container {
                         padding: 10px;
                     }
                 }
 
-                .flex-item {
+                .msl-flex-item {
                     flex: 1;
                     box-sizing: border-box;
                     margin-top: 10px;
@@ -48,8 +48,16 @@ aren’t available to the outside world. */
                     align-self: center;
                 }
 
-                .flex-item img {
+                .msl-flex-item img {
                     max-width: 256px;
+                }
+
+                .msl-recommendations {
+                    margin-top: 40px;
+                }
+
+                .msl-recommendations-title {
+                    text-align: center;
                 }
             </style>
         `)
@@ -84,7 +92,7 @@ aren’t available to the outside world. */
 
     var buildCardTemplate = function (productData) {
         return ` 
-            <div class="flex-item">
+            <div class="msl-flex-item">
                 <img src="${productData.image.src}" />
                 <h4> ${productData.title} </h4>
                 <span> ${productData.variants[0].price} </span>
@@ -94,13 +102,14 @@ aren’t available to the outside world. */
 
     var buildRecommendationSectionTemplate = function (recommendationsResponse) {
         return `
-
-            <div class="flex-container">
-                <h2 class="h2" style="text-align: inherit;">Recommended Products</h2>
-                ${
-                    recommendationsResponse.products
-                        .map(product => buildCardTemplate(product)).join('')
-                }
+            <div class="msl-recommendations">
+                <h2 class="msl-recommendations-title">Recommended Products</h2>
+                <div class="msl-flex-container">
+                    ${
+                        recommendationsResponse.products
+                            .map(product => buildCardTemplate(product)).join('')
+                    }
+                </div>
             </div>
         `
     };
