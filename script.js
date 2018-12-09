@@ -5,6 +5,44 @@ aren’t available to the outside world. */
 
     var SHOP = window.Shopify.shop
     var API_BASE = `https://${SHOP}/apps/mindset-api-v1`
+
+
+
+    var loadCSS = function(){
+        document.getElementsByTagName("head")[0].appendChild(`
+            <style>
+                .flex-container {
+                    padding: 0;
+                    margin: 0;
+                    list-style: none;
+
+                    display: -webkit-box;
+                    display: -moz-box;
+                    display: -ms-flexbox;
+                    display: -webkit-flex;
+                    display: flex;
+
+                    -webkit-flex-flow: row wrap;
+                    justify-content: space-around;
+                }
+
+                .flex-item {
+                    flex: 1;
+                    box-sizing: border-box;
+                    border: 3px solid #fff;
+                    background: tomato;
+                    height: 150px;
+                    margin-top: 10px;
+
+                    line-height: 150px;
+                    color: white;
+                    font-weight: bold;
+                    font-size: 3em;
+                    text-align: center;
+                }
+            </style>
+        `)
+    };
   
     /* Load Script function we may need to load jQuery from the Google's CDN */
     /* That code is world-reknown. */
@@ -34,11 +72,28 @@ aren’t available to the outside world. */
     };
 
     var buildCardTemplate = function (productData) {
-        // TODO: implement
+        return ` 
+            <div class="flex-item">
+                <img 
+                    src="${productData.image}"
+                    width="100%" 
+                />
+                <h3> ${productData.title} </h3>
+                <p> ${productData.price} </p>
+            </div>
+        `
     };
 
     var buildRecommendationSectionTemplate = function (recommendationsResponse) {
-        // TODO: implement
+        return `
+
+            <div class="flex-container">
+                ${
+                    recommendationsResponse.products
+                        .map(product => buildCardTemplate(product)).join('')
+                }
+            </div>
+        `
     };
 
     /* This is my app's JavaScript */
@@ -56,9 +111,11 @@ aren’t available to the outside world. */
     if ((typeof jQuery === 'undefined') || (parseInt(jQuery.fn.jquery) === 1 && parseFloat(jQuery.fn.jquery.replace(/^1\./,'')) < 7.1)) {
         loadScript('//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js', function(){
             jQuery191 = jQuery.noConflict(true);
+            loadCSS();
             initialize(jQuery191);
         });
     } else {
+        loadCSS();
         initialize(jQuery);
     }
 
