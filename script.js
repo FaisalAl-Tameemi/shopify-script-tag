@@ -25,7 +25,7 @@ aren’t available to the outside world. */
                     justify-content: space-around;
                     vertical-align: center;
 
-                    padding: 100px;
+                    padding: 40px 160px;
                 }
 
                 @media screen and (max-width: 992px) {
@@ -46,6 +46,10 @@ aren’t available to the outside world. */
                     margin-top: 10px;
                     text-align: center;
                     align-self: center;
+                }
+
+                .flex-item img {
+                    max-width: 256px;
                 }
             </style>
         `)
@@ -81,10 +85,7 @@ aren’t available to the outside world. */
     var buildCardTemplate = function (productData) {
         return ` 
             <div class="flex-item">
-                <img 
-                    src="${productData.image.src}"
-                    width="100%" 
-                />
+                <img src="${productData.image.src}" />
                 <h4> ${productData.title} </h4>
                 <span> ${productData.variants[0].price} </span>
             </div>
@@ -95,6 +96,7 @@ aren’t available to the outside world. */
         return `
 
             <div class="flex-container">
+                <h2 class="h2" style="text-align: inherit;">Recommended Products</h2>
                 ${
                     recommendationsResponse.products
                         .map(product => buildCardTemplate(product)).join('')
