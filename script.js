@@ -23,6 +23,7 @@ aren’t available to the outside world. */
 
                     -webkit-flex-flow: row wrap;
                     justify-content: space-around;
+                    vertical-align: center;
 
                     padding: 100px;
                 }
@@ -44,6 +45,7 @@ aren’t available to the outside world. */
                     box-sizing: border-box;
                     margin-top: 10px;
                     text-align: center;
+                    align-self: center;
                 }
             </style>
         `)
