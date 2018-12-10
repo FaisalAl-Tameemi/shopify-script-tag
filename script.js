@@ -116,7 +116,14 @@ aren’t available to the outside world. */
 
     /* This is my app's JavaScript */
     var initialize = function($){
-        $.get(`${API_BASE}/recommendations/similar`, function(data) {
+        var path = window.location.pathname
+        var productHandle = path.split('/').find((elm) => elm.length > 3 && elm !== 'products')
+
+        if (!productHandle) {
+            return;
+        }
+
+        $.get(`${API_BASE}/recommendations/similar?handle=${productHandle}`, function(data) {
             var html = buildRecommendationSectionTemplate(data);
             $('#shopify-section-product-template').append(html);
         });
